@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QA Genius AI — AI QA Assistant for Modern Software Testing</title>
+
+<!-- ============================ SEO ============================ -->
+<meta name="description" content="QA Genius AI generates test cases, bug reports, Playwright and Selenium automation, API tests, SQL validation queries and QA checklists using AI. Built for manual testers, SDETs and QA leads.">
+<meta name="keywords" content="QA, software testing, test cases, Playwright, Selenium, API testing, bug report, automation, SDET, test plan, regression checklist">
+<meta name="author" content="QA Genius AI">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://your-username.github.io/qa-genius-ai/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#070B14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F2F4F9" media="(prefers-color-scheme: light)">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QA Genius AI">
+<meta property="og:title" content="QA Genius AI — AI QA Assistant for Modern Software Testing">
+<meta property="og:description" content="Generate test cases, automate QA workflows, analyze bugs, write automation scripts and create API tests using AI.">
+<meta property="og:url" content="https://your-username.github.io/qa-genius-ai/">
+<meta property="og:image" content="https://your-username.github.io/qa-genius-ai/assets/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QA Genius AI — AI QA Assistant for Modern Software Testing">
+<meta name="twitter:description" content="Generate test cases, automation scripts, bug reports and QA checklists using AI.">
+<meta name="twitter:image" content="https://your-username.github.io/qa-genius-ai/assets/images/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Fonts: display = Space Grotesk, body = Inter, utility = JetBrains Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QA Genius AI",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "description": "AI assistant for software testing: generates test cases, bug reports, automation scripts, API tests and QA checklists.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<!-- Set the theme before first paint so the page never flashes the wrong colours. -->
+<script>
+  (function () {
+    try {
+      var saved = JSON.parse(localStorage.getItem('qagenius.settings') || '{}');
+      var theme = saved.theme || 'auto';
+      var resolved = theme === 'auto'
+        ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+        : theme;
+      document.documentElement.dataset.theme = resolved;
+      if (saved.fontSize) document.documentElement.style.setProperty('--chat-font', saved.fontSize + 'px');
+    } catch (e) { /* storage blocked — dark stays the default */ }
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ==================================================================
+     LANDING
+     ================================================================== -->
+<div id="landing">
+
+  <!-- ------------------------- Top navigation ------------------------- -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#home" aria-label="QA Genius AI, home">
+        <img src="assets/icons/logo.svg" alt="" width="30" height="30" aria-hidden="true">
+        <span class="logo-text">QA<em>Genius</em>AI</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#documentation">Documentation</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/your-username/qa-genius-ai" rel="noopener" target="_blank">GitHub</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="i-sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="i-moon"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+        <button class="btn btn-primary btn-sm" type="button" data-open-chat>Start chat</button>
+        <button class="icon-btn nav-burger" id="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ------------------------------ Hero ------------------------------ -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">SPEC-01 · AI QA assistant</p>
+          <h1>AI QA Assistant for <span class="grad">Modern Software Testing</span></h1>
+          <p class="lede">Generate test cases, automate QA workflows, analyze bugs, write automation scripts, create API tests and improve software quality using AI.</p>
+
+          <div class="hero-cta">
+            <button class="btn btn-primary" type="button" data-open-chat>
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5.2A8 8 0 1 1 21 12Z"/></svg>
+              Start chat
+            </button>
+            <a class="btn btn-ghost" href="#documentation">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M5 4h9l5 5v11H5z"/><path d="M14 4v5h5"/></svg>
+              Documentation
+            </a>
+          </div>
+
+          <dl class="hero-stats">
+            <div><dt>Prompt cards</dt><dd>18</dd></div>
+            <div><dt>Slash commands</dt><dd>11</dd></div>
+            <div><dt>QA templates</dt><dd>12</dd></div>
+          </dl>
+        </div>
+
+        <!-- Signature element: a live test-run panel. It is the artifact a QA
+             engineer reads every day, and it previews how the assistant streams. -->
+        <div class="run-panel glass" role="img" aria-label="Example test run: 6 of 7 login test cases passed in 1.24 seconds.">
+          <div class="run-head">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <code>qa-genius run --suite login</code>
+          </div>
+          <ol class="run-lines" id="run-lines">
+            <li data-status="pass"><span class="tc">TC-001</span><span class="rl-name">Valid credentials sign in</span><span class="badge pass">PASS</span></li>
+            <li data-status="pass"><span class="tc">TC-002</span><span class="rl-name">Wrong password shows error</span><span class="badge pass">PASS</span></li>
+            <li data-status="pass"><span class="tc">TC-003</span><span class="rl-name">Email field boundary 254 chars</span><span class="badge pass">PASS</span></li>
+            <li data-status="fail"><span class="tc">TC-004</span><span class="rl-name">Lockout after 5 attempts</span><span class="badge fail">FAIL</span></li>
+            <li data-status="pass"><span class="tc">TC-005</span><span class="rl-name">SQL injection payload rejected</span><span class="badge pass">PASS</span></li>
+            <li data-status="pass"><span class="tc">TC-006</span><span class="rl-name">Session cookie is HttpOnly</span><span class="badge pass">PASS</span></li>
+            <li data-status="pass"><span class="tc">TC-007</span><span class="rl-name">Tab order reaches Submit</span><span class="badge pass">PASS</span></li>
+          </ol>
+          <div class="run-foot">
+            <span class="chip pass">6 passed</span>
+            <span class="chip fail">1 failed</span>
+            <span class="chip">0 skipped</span>
+            <span class="run-time">1.24s</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------- Features ---------------------------- -->
+    <section class="section" id="features">
+      <div class="wrap">
+        <p class="eyebrow">Coverage</p>
+        <h2 class="section-title">What it covers</h2>
+        <p class="section-lede">One assistant across the whole testing lifecycle — from test design through automation, pipelines and release sign-off.</p>
+
+        <div class="feat-grid">
+          <article class="card glass">
+            <h3>Test design</h3>
+            <p>Boundary value analysis, equivalence partitioning, decision tables, state transitions and negative paths — written as reviewable test cases.</p>
+            <p class="tags"><span>Manual testing</span><span>Test data</span><span>BVA</span><span>EP</span></p>
+          </article>
+          <article class="card glass">
+            <h3>Automation</h3>
+            <p>Playwright, Selenium with Python or Java, page objects, fixtures, waits and assertions — with the framework scaffolding around them.</p>
+            <p class="tags"><span>Playwright</span><span>Selenium</span><span>Python</span><span>Java</span><span>JavaScript</span></p>
+          </article>
+          <article class="card glass">
+            <h3>API &amp; data</h3>
+            <p>REST and GraphQL contracts, Postman collections, JMeter plans, plus SQL validation across MySQL, MSSQL, Oracle and MongoDB.</p>
+            <p class="tags"><span>REST</span><span>GraphQL</span><span>Postman</span><span>JMeter</span><span>SQL</span></p>
+          </article>
+          <article class="card glass">
+            <h3>Quality gates</h3>
+            <p>Accessibility against WCAG, OWASP security checks, performance budgets and release checklists your team can actually sign off on.</p>
+            <p class="tags"><span>WCAG</span><span>OWASP</span><span>Performance</span><span>Release</span></p>
+          </article>
+          <article class="card glass">
+            <h3>Process</h3>
+            <p>Test plans and strategies, Agile and Scrum ceremonies, Jira tickets, TestRail cases, Git branching and CI/CD wiring.</p>
+            <p class="tags"><span>Agile</span><span>Scrum</span><span>Jira</span><span>TestRail</span><span>CI/CD</span></p>
+          </article>
+          <article class="card glass">
+            <h3>Platforms</h3>
+            <p>Web, mobile on Android and iOS, desktop, OCR flows and AI systems — including how to test a model you cannot make deterministic.</p>
+            <p class="tags"><span>Android</span><span>iOS</span><span>Web</span><span>Desktop</span><span>AI testing</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------- Documentation -------------------------- -->
+    <section class="section alt" id="documentation">
+      <div class="wrap">
+        <p class="eyebrow">Documentation</p>
+        <h2 class="section-title">Get it running</h2>
+        <p class="section-lede">The page is static and ships to GitHub Pages. A Cloudflare Worker holds the Gemini key so it never reaches the browser.</p>
+
+        <!-- Numbered because deployment genuinely is a sequence. -->
+        <ol class="steps">
+          <li>
+            <h3>Deploy the Worker</h3>
+            <p>From <code>worker/</code>, run <code>npx wrangler deploy</code>. Then store the key as a secret: <code>npx wrangler secret put GEMINI_API_KEY</code>.</p>
+          </li>
+          <li>
+            <h3>Allow your origin</h3>
+            <p>Set <code>ALLOWED_ORIGINS</code> in <code>wrangler.toml</code> to your Pages URL. The Worker refuses requests from anywhere else.</p>
+          </li>
+          <li>
+            <h3>Point the app at it</h3>
+            <p>Put the Worker URL in <code>API_ENDPOINT</code> at the top of <code>script.js</code>, or paste it into Settings while you test.</p>
+          </li>
+          <li>
+            <h3>Publish the page</h3>
+            <p>Push to <code>main</code> and enable GitHub Pages on the repository root. No build step.</p>
+          </li>
+        </ol>
+
+        <h3 class="sub-title">Slash commands</h3>
+        <p class="section-lede">Type <code>/</code> in the composer to filter the list.</p>
+        <div class="cmd-table-wrap">
+          <table class="cmd-table">
+            <caption class="sr-only">Slash commands and what each one produces</caption>
+            <thead><tr><th scope="col">Command</th><th scope="col">Produces</th></tr></thead>
+            <tbody>
+              <tr><td><code>/testcase</code></td><td>Test cases in a table with steps, data and expected results</td></tr>
+              <tr><td><code>/bug</code></td><td>A bug report with repro steps, severity and environment</td></tr>
+              <tr><td><code>/api</code></td><td>REST or GraphQL test cases with payloads and assertions</td></tr>
+              <tr><td><code>/playwright</code></td><td>Playwright specs with page objects and web-first assertions</td></tr>
+              <tr><td><code>/selenium</code></td><td>Selenium code with explicit waits and page objects</td></tr>
+              <tr><td><code>/sql</code></td><td>SQL validation queries for the dialect you name</td></tr>
+              <tr><td><code>/postman</code></td><td>An importable Postman collection as JSON</td></tr>
+              <tr><td><code>/checklist</code></td><td>A checklist you can tick through</td></tr>
+              <tr><td><code>/explain</code></td><td>A concept explained with a worked example</td></tr>
+              <tr><td><code>/improve</code></td><td>Your artifact rewritten, with the changes called out</td></tr>
+              <tr><td><code>/review</code></td><td>A review with findings ranked by severity</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------ About ------------------------------ -->
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Built for people who ship tested software</h2>
+          <p class="section-lede">QA Genius AI is an open-source front end for Google Gemini with a testing brain bolted on. The system prompt lives in the Worker, so the assistant answers like a QA engineer instead of a general chatbot — it asks what it needs, then hands back an artifact you can paste into Jira, TestRail or a repo.</p>
+          <p class="section-lede">Your conversations stay in your browser's local storage. Nothing is stored on a server, and there is no account.</p>
+          <div class="hero-cta">
+            <button class="btn btn-primary" type="button" data-open-chat>Start chat</button>
+            <a class="btn btn-ghost" href="https://github.com/your-username/qa-genius-ai" rel="noopener" target="_blank">View source</a>
+          </div>
+        </div>
+        <ul class="fact-list glass">
+          <li><span>Front end</span><b>HTML, CSS, vanilla ES6</b></li>
+          <li><span>Model</span><b>Google Gemini</b></li>
+          <li><span>Proxy</span><b>Cloudflare Worker</b></li>
+          <li><span>Hosting</span><b>GitHub Pages</b></li>
+          <li><span>Storage</span><b>Your browser only</b></li>
+          <li><span>Licence</span><b>MIT</b></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="logo-text small">QA<em>Genius</em>AI</span>
+      <p>Built for QA engineers. Answers are drafts — review before you ship them.</p>
+      <nav aria-label="Footer">
+        <a href="#features">Features</a>
+        <a href="#documentation">Documentation</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/your-username/qa-genius-ai" rel="noopener" target="_blank">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+</div>
+
+<!-- ==================================================================
+     CHAT APPLICATION
+     ================================================================== -->
+<div id="chat-view" class="chat-view" hidden>
+
+  <!-- --------------------------- Sidebar --------------------------- -->
+  <aside class="sidebar" id="sidebar" aria-label="Conversations">
+    <div class="sb-top">
+      <a class="logo" href="#home" data-close-chat aria-label="QA Genius AI, back to home">
+        <img src="assets/icons/logo.svg" alt="" width="26" height="26" aria-hidden="true">
+        <span class="logo-text small">QA<em>Genius</em>AI</span>
+      </a>
+      <button class="icon-btn sb-close" id="sidebar-close" type="button" aria-label="Close sidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <button class="btn btn-primary btn-block" id="new-chat" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 5v14M5 12h14"/></svg>
+      New chat
+    </button>
+
+    <div class="sb-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.3-4.3"/></svg>
+      <input type="search" id="search-chats" placeholder="Search chats" aria-label="Search conversations" autocomplete="off">
+    </div>
+
+    <nav class="sb-list" id="chat-list" aria-label="Conversation history"></nav>
+
+    <div class="sb-bottom">
+      <button class="sb-action" id="open-settings" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 7h9M19 7h1M4 17h5M15 17h5"/><circle cx="16" cy="7" r="2.4"/><circle cx="12" cy="17" r="2.4"/></svg>
+        Settings
+      </button>
+      <button class="sb-action" data-close-chat type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg>
+        Back to home
+      </button>
+    </div>
+  </aside>
+  <div class="sb-scrim" id="sb-scrim" hidden></div>
+
+  <!-- ---------------------------- Main ---------------------------- -->
+  <div class="chat-main">
+    <header class="chat-head">
+      <button class="icon-btn" id="sidebar-open" type="button" aria-label="Open sidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <h1 class="chat-title" id="chat-title">New chat</h1>
+      <div class="chat-head-actions">
+        <div class="menu-wrap">
+          <button class="icon-btn" id="export-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Export chat" title="Export chat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v3h16v-3"/></svg>
+          </button>
+          <div class="menu" id="export-menu" role="menu" hidden>
+            <button role="menuitem" data-export="pdf" type="button">PDF</button>
+            <button role="menuitem" data-export="md" type="button">Markdown</button>
+            <button role="menuitem" data-export="json" type="button">JSON</button>
+            <button role="menuitem" data-export="txt" type="button">Plain text</button>
+          </div>
+        </div>
+        <button class="icon-btn" id="theme-toggle-2" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="i-sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="i-moon"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Empty state: greeting + prompt cards -->
+    <div class="chat-empty" id="chat-empty">
+      <div class="empty-inner">
+        <img src="assets/icons/logo.svg" alt="" width="48" height="48" class="empty-logo" aria-hidden="true">
+        <h2>What are we testing today?</h2>
+        <p>Pick a starting point, or type <code>/</code> to see the commands.</p>
+
+        <div class="chip-row" role="tablist" aria-label="Filter prompts">
+          <button class="filter-chip is-on" role="tab" aria-selected="true" data-filter="all" type="button">All</button>
+          <button class="filter-chip" role="tab" aria-selected="false" data-filter="design" type="button">Test design</button>
+          <button class="filter-chip" role="tab" aria-selected="false" data-filter="automation" type="button">Automation</button>
+          <button class="filter-chip" role="tab" aria-selected="false" data-filter="api" type="button">API &amp; data</button>
+          <button class="filter-chip" role="tab" aria-selected="false" data-filter="gates" type="button">Quality gates</button>
+          <button class="filter-chip" role="tab" aria-selected="false" data-filter="learn" type="button">Concepts</button>
+        </div>
+
+        <div class="prompt-grid" id="prompt-grid"></div>
+      </div>
+    </div>
+
+    <!-- Message stream -->
+    <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation" hidden></div>
+
+    <!-- Composer -->
+    <div class="composer-zone">
+      <button class="scroll-bottom" id="scroll-bottom" type="button" aria-label="Scroll to latest message" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </button>
+
+      <div class="composer glass">
+        <div class="cmd-pop" id="cmd-pop" role="listbox" aria-label="Commands" hidden></div>
+        <label class="sr-only" for="composer-input">Message QA Genius AI</label>
+        <textarea id="composer-input" rows="1" placeholder="Ask for test cases, automation, a bug report… or type /" autocomplete="off" spellcheck="true"></textarea>
+        <div class="composer-actions">
+          <span class="composer-hint" id="composer-hint">Enter to send · Shift+Enter for a new line</span>
+          <button class="send-btn" id="send-btn" type="button" aria-label="Send message" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="i-send"><path d="M4 12l16-8-6 8 6 8-16-8Z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="i-stop"><rect x="7" y="7" width="10" height="10" rx="2"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="disclaimer">QA Genius AI can be wrong. Review generated tests and code before you run them.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================================================================
+     SETTINGS DIALOG
+     ================================================================== -->
+<dialog id="settings" class="dialog" aria-labelledby="settings-title">
+  <form method="dialog" class="dialog-inner">
+    <header class="dialog-head">
+      <h2 id="settings-title">Settings</h2>
+      <button class="icon-btn" value="close" aria-label="Close settings" type="submit">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="dialog-body">
+      <fieldset class="field">
+        <legend>Theme</legend>
+        <div class="seg" role="radiogroup" aria-label="Theme">
+          <label><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+          <label><input type="radio" name="theme" value="light"><span>Light</span></label>
+          <label><input type="radio" name="theme" value="auto"><span>Auto</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="set-font">Font size <output id="set-font-out">15px</output></label>
+        <input type="range" id="set-font" min="13" max="20" step="1">
+        <p class="help">Applies to messages in the chat.</p>
+      </div>
+
+      <div class="field">
+        <label for="set-temp">Temperature <output id="set-temp-out">0.6</output></label>
+        <input type="range" id="set-temp" min="0" max="1" step="0.1">
+        <p class="help">Low is repeatable and literal — best for test cases. High is more inventive.</p>
+      </div>
+
+      <div class="field">
+        <label for="set-length">Response length</label>
+        <select id="set-length">
+          <option value="short">Short — the answer, nothing else</option>
+          <option value="balanced">Balanced — the answer with context</option>
+          <option value="detailed">Detailed — full coverage and edge cases</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="set-endpoint">Worker endpoint</label>
+        <input type="url" id="set-endpoint" placeholder="https://qa-genius-ai.your-name.workers.dev/api/chat" spellcheck="false">
+        <p class="help">Overrides the built-in endpoint on this device. Your Gemini key stays in the Worker — never paste it here.</p>
+      </div>
+
+      <div class="field danger">
+        <div>
+          <strong>Clear history</strong>
+          <p class="help">Deletes every conversation stored in this browser. This cannot be undone.</p>
+        </div>
+        <button class="btn btn-danger btn-sm" id="clear-history" type="button">Clear history</button>
+      </div>
+    </div>
+
+    <footer class="dialog-foot">
+      <span class="ver">v1.0.0</span>
+      <button class="btn btn-primary btn-sm" value="close" type="submit">Done</button>
+    </footer>
+  </form>
+</dialog>
+
+<!-- Toast host -->
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+#:schema node_modules/wrangler/config-schema.json
+# ---------------------------------------------------------------------------
+# QA Genius AI — Cloudflare Worker configuration
+#
+# Deploy:  cd worker && npx wrangler deploy
+# Secret:  npx wrangler secret put GEMINI_API_KEY
+# Local:   npx wrangler dev            (reads .dev.vars for the key)
+#
+# The API key is NEVER set here. Secrets go through `wrangler secret put`
+# or the Cloudflare dashboard, and this file is committed to git.
+# ---------------------------------------------------------------------------
+
+name = "qa-genius-ai"
+main = "worker.js"
+compatibility_date = "2025-01-15"
+
+# Uncomment to see live logs in the Cloudflare dashboard.
+# [observability]
+# enabled = true
+
+[vars]
+# Origins allowed to call this Worker. Replace with your GitHub Pages URL.
+# Comma-separated, no trailing slash, no spaces needed around commas.
+ALLOWED_ORIGINS = "https://your-username.github.io,http://localhost:8000,http://127.0.0.1:5500"
+
+# Gemini model. gemini-2.5-flash is fast and cheap; gemini-2.5-pro reasons harder.
+MODEL = "gemini-2.5-flash"
+
+# Requests per IP per minute (best-effort, per isolate).
+RATE_LIMIT = "20"
+
+# ---------------------------------------------------------------------------
+# Optional: a hard, account-wide rate limit. Uncomment and adapt worker.js.
+# ---------------------------------------------------------------------------
+# [[unsafe.bindings]]
+# name = "CHAT_LIMITER"
+# type = "ratelimit"
+# namespace_id = "1001"
+# simple = { limit = 20, period = 60 }
+
+# ---------------------------------------------------------------------------
+# Optional: a custom route on your own domain.
+# ---------------------------------------------------------------------------
+# routes = [
+#   { pattern = "api.example.com/api/*", zone_name = "example.com" }
+# ]
