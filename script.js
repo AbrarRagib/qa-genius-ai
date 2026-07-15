@@ -20,7 +20,7 @@
 
   const CONFIG = {
     // Replace with your deployed Worker route. Settings can override it per device.
-    API_ENDPOINT: 'https://qa-genius-ai.your-name.workers.dev/api/chat',
+    API_ENDPOINT: 'https://qa-genius-ai.abrarragib.workers.dev/api/chat',
     STORAGE_KEY: 'qagenius.chats',
     SETTINGS_KEY: 'qagenius.settings',
     MAX_CHATS: 60,
