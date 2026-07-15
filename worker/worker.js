@@ -145,6 +145,20 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
     }
 
+    if (url.pathname === '/api/models') {
+      if (!env.GEMINI_API_KEY) return json({ error: 'GEMINI_API_KEY not set.' }, 401, origin || '*');
+      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models', {
+        headers: { 'x-goog-api-key': env.GEMINI_API_KEY }
+      });
+      const d = await r.json();
+      if (!r.ok) return json({ status: r.status, error: d?.error?.message || 'unknown' }, 200, origin || '*');
+      return json({
+        configuredModel: env.MODEL || DEFAULT_MODEL,
+        count: (d.models || []).length,
+        all: (d.models || []).map(m => ({ name: m.name, methods: m.supportedGenerationMethods }))
+      }, 200, origin || '*');
+    }
+
     if (url.pathname === '/api/health') {
       return json({ ok: true, model: env.MODEL || DEFAULT_MODEL, keyConfigured: Boolean(env.GEMINI_API_KEY) }, 200, origin || '*');
     }
@@ -226,7 +240,7 @@ export default {
         : upstream.status === 401 || upstream.status === 403 ? 'The Gemini API key was rejected. Check the GEMINI_API_KEY secret.'
         : upstream.status === 429 ? 'Gemini rate limit reached. Try again shortly.'
         : upstream.status === 503 ? 'The model is overloaded. Try again shortly.'
-        : `Gemini returned ${upstream.status}.`;
+        : `Gemini returned ${upstream.status}. ${detail}`.trim();
 
       const status = [400, 401, 403, 429].includes(upstream.status) ? upstream.status : 502;
       return json({ error: message }, status, origin);

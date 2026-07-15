@@ -24,7 +24,8 @@ compatibility_date = "2025-01-15"
 ALLOWED_ORIGINS = "https://abrarragib.github.io,http://localhost:8000,http://127.0.0.1:5500"
 
 # Gemini model. gemini-2.5-flash is fast and cheap; gemini-2.5-pro reasons harder.
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-flash-latest"
+
 
 # Requests per IP per minute (best-effort, per isolate).
 RATE_LIMIT = "20"
